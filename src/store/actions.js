@@ -8,7 +8,7 @@ export const toggleTodoAction = (todoId) => ({
   payload: todoId,
 });
 
-export const DeleteTodoAction = (todoId) => ({
+export const deleteTodoAction = (todoId) => ({
   type: "DELETE_TODO",
   payload: todoId,
 });
