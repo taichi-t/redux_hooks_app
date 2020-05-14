@@ -1,28 +1,18 @@
 import { createStore } from "redux";
-import { v4 as uuidv4 } from "uuid";
 
-const initialState = {
-  todos: [
-    {
-      id: uuidv4(),
-      name: "Go to the gym",
-      complete: false,
-    },
-    {
-      id: uuidv4(),
-      name: "Do laundry",
-      complete: true,
-    },
-  ],
-};
-
-console.log(initialState);
+const persistedState = localStorage.getItem("todos")
+  ? JSON.parse(localStorage.getItem("todos"))
+  : { todos: [] };
 
 export const store = createStore(
   reducer,
-  initialState,
+  persistedState,
   window.devToolsExtension && window.devToolsExtension()
 );
+
+store.subscribe(() => {
+  localStorage.setItem("todos", JSON.stringify(store.getState()));
+});
 
 function reducer(state, { type, payload }) {
   switch (type) {
