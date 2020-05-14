@@ -16,6 +16,8 @@ const initialState = {
   ],
 };
 
+console.log(initialState);
+
 export const store = createStore(
   reducer,
   initialState,
