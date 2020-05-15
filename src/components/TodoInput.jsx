@@ -3,6 +3,12 @@ import { useDispatch } from "react-redux";
 import { addTodoAction } from "../store/actions";
 import { v4 as uuidv4 } from "uuid";
 
+//style
+import Input from "@material-ui/core/Input";
+import Button from "@material-ui/core/Button";
+import styled from "styled-components";
+import AddIcon from "@material-ui/icons/Add";
+
 export const TodoInput = () => {
   const [todo, setTodo] = useState("");
   const dispatch = useDispatch();
@@ -22,19 +28,29 @@ export const TodoInput = () => {
     setTodo("");
   };
   return (
-    <form onSubmit={onSubmit}>
-      <div className="form-div">
-        <input
+    <Container>
+      <form onSubmit={onSubmit}>
+        <Input
           type="text"
           name="todo"
           placeholder="Add a todo"
           value={todo}
           onChange={onChange}
         />
-        <button type="submit">Add Todo</button>
-      </div>
-    </form>
+        <Button
+          type="submit"
+          color="primary"
+          style={{ margin: 0 }}
+          startIcon={<AddIcon />}
+        />
+      </form>
+    </Container>
   );
 };
 
 export default TodoInput;
+
+//style
+const Container = styled.div`
+  text-align: center;
+`;
